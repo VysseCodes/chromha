@@ -1,0 +1,4 @@
+# GitHub review routing. Separate from the "codeowners" field in
+# custom_components/chromha/manifest.json, which is what hassfest checks.
+*                               @vyssecodes
+/custom_components/chromha/     @vyssecodes

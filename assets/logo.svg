@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"
+     width="256" height="256" role="img" aria-label="ChromHA">
+  <title>ChromHA</title>
+
+  <defs>
+    <!-- Spectrum runs bottom-left to top-right: warm end under the left wall,
+         cool end at the apex. userSpaceOnUse keeps one continuous ramp across
+         every stroke rather than restarting per bounding box. -->
+    <linearGradient id="spectrum" gradientUnits="userSpaceOnUse"
+                    x1="26" y1="232" x2="214" y2="34">
+      <stop offset="0.00" stop-color="#f6353a"/>
+      <stop offset="0.16" stop-color="#f97316"/>
+      <stop offset="0.32" stop-color="#f5c518"/>
+      <stop offset="0.48" stop-color="#4cc94c"/>
+      <stop offset="0.64" stop-color="#16bfae"/>
+      <stop offset="0.80" stop-color="#2b8ce8"/>
+      <stop offset="1.00" stop-color="#8b45d6"/>
+    </linearGradient>
+  </defs>
+
+  <g fill="none" stroke="url(#spectrum)"
+     stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- House -->
+    <path d="M 26 116 L 128 26 L 230 116 L 230 230 L 26 230 Z"
+          stroke-width="22"/>
+
+    <!-- Circuit traces. Each stops exactly at its node's outer edge rather
+         than running to the centre, so the ring stays a distinct shape
+         instead of fusing into the line at small sizes. -->
+    <path d="M 128 198 L 128 121" stroke-width="18"/>
+    <path d="M 128 168 L 100.9 156.1" stroke-width="18"/>
+    <path d="M 128 152 L 159.4 130.2" stroke-width="18"/>
+
+    <!-- Nodes. r18 / stroke14 leaves an 11-unit inner radius: still a clear
+         ring at 256px, and it fills to a clean solid dot at 16px rather than
+         closing up raggedly. -->
+    <circle cx="128" cy="96" r="18" stroke-width="14"/>
+    <circle cx="78" cy="146" r="18" stroke-width="14"/>
+    <circle cx="180" cy="116" r="18" stroke-width="14"/>
+  </g>
+</svg>

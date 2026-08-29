@@ -1,0 +1,22 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Add a ChromHA profile",
+        "description": "Each profile becomes its own theme. Add one per person, then pick it in your user profile. Mode 'Sun' follows sunrise and sunset instead of the client's light/dark setting, which is usually what you want on a wall tablet.",
+        "data": {
+          "profile_name": "Profile name",
+          "accent": "Accent colour",
+          "accent_hex": "Custom accent (hex)",
+          "style": "Style",
+          "mode": "Mode"
+        }
+      }
+    },
+    "error": {
+      "name_required": "Give the profile a name.",
+      "name_exists": "A profile with that name already exists.",
+      "invalid_colour": "Enter a colour like #aa3151."
+    }
+  }
+}

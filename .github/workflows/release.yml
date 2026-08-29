@@ -1,0 +1,24 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # HACS serves whatever the manifest says, so a mismatched version is a
+      # confusing bug for users. Fail the release instead.
+      - name: Check manifest version matches the tag
+        run: |
+          TAG="${GITHUB_REF#refs/tags/}"
+          TAG="${TAG#v}"
+          MANIFEST=$(python3 -c "import json;print(json.load(open('custom_components/chromha/manifest.json'))['version'])")
+          echo "tag=$TAG manifest=$MANIFEST"
+          [ "$TAG" = "$MANIFEST" ] || {
+            echo "::error::manifest.json version ($MANIFEST) does not match tag ($TAG)"
+            exit 1
+          }
