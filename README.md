@@ -141,8 +141,27 @@ Assistant already draws the distinction it can: `rainy` gets `rainy-2`,
 `pouring` gets `rainy-3`.
 
 It cannot be driven by live rainfall. A theme supplies one URL per condition
-and the weather card reuses that URL for forecast rows, so an icon reflecting
-current intensity would put today's rain rate on next week's forecast.
+and the weather card reuses that URL for forecast rows - confirmed by testing,
+not assumed - so an icon reflecting current intensity would put today's rain
+rate on next week's forecast icons too.
+
+If you want intensity from live data, do it in a card rather than the theme.
+`icon_library` on the palette sensor exposes all 51 icons, including the
+`rainy-1`/`snowy-1` tiers the condition mapping never reaches, so a
+button-card template can pick whichever it likes from a rain-rate sensor.
+
+### A note on sizing
+
+The upstream SVGs ship with a fixed `width`/`height` and no `viewBox`. As a
+CSS background that gives them an intrinsic size, so Home Assistant tiles them
+in any element larger than 56x48 instead of scaling. The bundled copies are
+normalised by `scripts/normalize_icons.py`: fixed dimensions removed, a
+`viewBox` and `preserveAspectRatio` added, nothing else touched. Re-run it
+after pulling new icons from upstream - it is idempotent.
+
+Note that these are CSS-animated (`@keyframes` inside `<style>`), not SMIL.
+That animates fine in an `<img>` or a CSS background in any current browser,
+but some SVG rasterisers will render only the first frame.
 
 ### The rest of the set
 
