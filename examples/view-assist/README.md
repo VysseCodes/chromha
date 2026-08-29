@@ -30,6 +30,31 @@ so the view still renders if no theme is applied.
 
 ---
 
+## Step 0 - Turn off View Assist's background images
+
+View Assist paints its own background image over every view, which wins over
+anything the theme does. It has no "none" option, so point it at ChromHA's
+transparent asset instead:
+
+Master Config -> **Background Image Source** -> *Default background*
+Master Config -> **Default Background** -> `/chromha_static/transparent.png`
+
+`body_template` sets the background with the CSS `background:` shorthand,
+which resets `background-color` to transparent - so a transparent image leaves
+the button-card with no background at all, and the Lovelace background behind
+it (your theme) shows through.
+
+If the result is black rather than your theme colour, `lovelace-background` is
+not set. ChromHA only sets it for the Glass style, so either switch the
+profile to Glass or add this after the `background:` line in `body_template`,
+where a later declaration wins:
+
+```yaml
+        - background-color: var(--primary-background-color)
+```
+
+---
+
 ## Step 1 - Body text
 
 `button_card_templates` lives at the *dashboard root*, not in a view file:

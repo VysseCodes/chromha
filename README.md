@@ -260,6 +260,19 @@ When cutting a release, bump `version` in
 `custom_components/chromha/manifest.json` to match the tag — a workflow fails
 the release if they disagree, because HACS serves whatever the manifest says.
 
+## Turning off View Assist backgrounds
+
+View Assist has no "no background" setting - the choices are a default image,
+a local sequence, a local random pick, or an Unsplash download. So ChromHA
+ships a 1x1 transparent PNG at `/chromha_static/transparent.png`.
+
+Master Config -> **Background Image Source** -> *Default background*, then set
+**Default Background** to `/chromha_static/transparent.png`. The image still
+loads, it just shows nothing, and the ChromHA background shows through on
+every view at once.
+
+The URL is also on the palette sensor as `transparent_url`.
+
 ## Examples
 
 `examples/view-assist/` contains a View Assist clock view wired to ChromHA,

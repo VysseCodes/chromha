@@ -35,6 +35,7 @@ from .const import (
     MODE_LIGHT,
     MODE_SUN,
     SUN_ENTITY,
+    TRANSPARENT_URL,
     WEATHER_ICON_MAP,
     icon_map,
 )
@@ -94,6 +95,9 @@ class ChromHAPaletteSensor(ChromHAEntity, SensorEntity):
             "mode": mode,
             "style": options.get(CONF_STYLE, DEFAULTS[CONF_STYLE]),
             "icon_base_url": ICON_URL_BASE,
+            # Point View Assist's default background here to disable its
+            # background images, since it has no option to turn them off.
+            "transparent_url": TRANSPARENT_URL,
             "is_night": night,
             "icon_daynight": options.get(
                 CONF_ICON_DAYNIGHT, DEFAULTS[CONF_ICON_DAYNIGHT]

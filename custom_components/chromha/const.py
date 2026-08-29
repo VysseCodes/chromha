@@ -15,6 +15,18 @@ ICON_URL_BASE: Final = "/chromha_icons"
 # Separate prefix so the static route below cannot swallow it. Requests here
 # are resolved against sun.sun at request time by icon_view.py.
 ICON_AUTO_URL_BASE: Final = "/chromha_icons_auto"
+
+# Static assets bundled with the integration.
+STATIC_URL_BASE: Final = "/chromha_static"
+STATIC_DIR: Final = "static"
+
+# A 1x1 fully transparent PNG.
+#
+# View Assist has no "no background" option - the choices are a default image,
+# a local sequence, a local random pick, or an Unsplash download. Pointing its
+# default background at this file is the way to turn it off: the image still
+# loads, it just shows nothing, and the theme background shows through.
+TRANSPARENT_URL: Final = f"{STATIC_URL_BASE}/transparent.png"
 ICON_DIR: Final = "icons"
 
 # --- Option keys -----------------------------------------------------------

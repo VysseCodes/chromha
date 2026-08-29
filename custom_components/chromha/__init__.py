@@ -11,7 +11,14 @@ from homeassistant.const import Platform
 from homeassistant.core import Event, EventStateChangedData, HomeAssistant
 from homeassistant.helpers.event import async_track_state_change_event
 
-from .const import DOMAIN, ICON_DIR, ICON_URL_BASE, SUN_ENTITY
+from .const import (
+    DOMAIN,
+    ICON_DIR,
+    ICON_URL_BASE,
+    STATIC_DIR,
+    STATIC_URL_BASE,
+    SUN_ENTITY,
+)
 from .icon_view import ChromHAIconView
 from .theme_manager import ThemeManager
 
@@ -43,9 +50,17 @@ async def _async_register_icons(hass: HomeAssistant) -> None:
         _LOGGER.warning("Bundled icons missing at %s", icon_path)
         return
 
-    await hass.http.async_register_static_paths(
-        [StaticPathConfig(ICON_URL_BASE, str(icon_path), cache_headers=True)]
-    )
+    paths = [StaticPathConfig(ICON_URL_BASE, str(icon_path), cache_headers=True)]
+
+    static_path = Path(__file__).parent / STATIC_DIR
+    if static_path.is_dir():
+        paths.append(
+            StaticPathConfig(STATIC_URL_BASE, str(static_path), cache_headers=True)
+        )
+    else:
+        _LOGGER.warning("Bundled static assets missing at %s", static_path)
+
+    await hass.http.async_register_static_paths(paths)
     # Sun-aware endpoint. Registered on a separate prefix so the static route
     # above cannot shadow it.
     hass.http.register_view(ChromHAIconView(hass))

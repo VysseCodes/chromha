@@ -5,6 +5,29 @@ All notable changes to ChromHA are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.2.1] - 2026-08-29
+
+### Added
+
+- **Transparent background asset**, bundled and served at
+  `/chromha_static/transparent.png`, with the URL also published on the
+  palette sensor as `transparent_url`.
+
+  View Assist paints its own background image over every view and has no
+  option to turn that off - the choices are a default image, a local sequence,
+  a local random pick, or an Unsplash download. Pointing its **Default
+  Background** at this file disables backgrounds across every view at once:
+  the image still loads, it just shows nothing, and the ChromHA background
+  shows through.
+
+  `body_template` sets the background with the CSS `background:` shorthand,
+  which resets `background-color` to transparent - so a transparent image
+  leaves the button-card with no background at all and the Lovelace background
+  behind it takes over.
+
+- Static assets are served from a new `/chromha_static` prefix, registered
+  alongside the icon path.
+
 ## [0.2.0] - 2026-08-29
 
 ### Fixed
@@ -84,5 +107,6 @@ First public release.
   so some newer components fall back to Home Assistant defaults.
 - `exceptional` maps to `severe-thunderstorm`, which is approximate.
 
+[0.2.1]: https://github.com/vyssecodes/chromha/releases/tag/v0.2.1
 [0.2.0]: https://github.com/vyssecodes/chromha/releases/tag/v0.2.0
 [0.1.0]: https://github.com/vyssecodes/chromha/releases/tag/v0.1.0
