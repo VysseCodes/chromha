@@ -260,6 +260,12 @@ When cutting a release, bump `version` in
 `custom_components/chromha/manifest.json` to match the tag — a workflow fails
 the release if they disagree, because HACS serves whatever the manifest says.
 
+## Examples
+
+`examples/view-assist/` contains a View Assist clock view wired to ChromHA,
+and a guide to making the remaining View Assist views follow the theme. Both
+use plain CSS variables and need no entity ids.
+
 ## Brand assets
 
 `assets/logo.svg` is the source artwork — true vector, so every PNG is
